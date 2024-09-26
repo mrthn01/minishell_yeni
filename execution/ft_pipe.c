@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:35:38 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/25 13:24:02 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/25 23:31:05 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ int	**ft_open_pipe()
 	int	i;
 	int	j;
 
-	i = g_minishell.token_num - 1; // öylesine
-	pipe_fd = malloc((i + 1) * sizeof(int *));
-	if (pipe_fd != NULL)
-		ft_memset(pipe_fd, 0, (i + 1) * sizeof(int *));
+	i = (g_minishell.token_num - 1); // öylesine
+	pipe_fd = ft_calloc(i + 1, sizeof(int *));
 	j = 0;
 	while (j < i)
 	{
@@ -54,13 +52,13 @@ int	**ft_open_pipe()
 	return (pipe_fd);
 }
 
-void	ft_write_pipe(t_parse **parse, int **fd_pipe, int i, t_fd **fd, int flag)
+void	ft_write_pipe(t_parse **parse, int **fd_pipe, int i, t_fd **fd)
 {
 	if (parse[i + 1] == NULL)
 	{
 		dup2(g_minishell.out, STDOUT_FILENO);
 		parse[i]->out_file = g_minishell.out;
-		ft_execute_commands(parse[i], parse[i]->file, fd, flag);
+		ft_execute_commands(parse[i], parse[i]->file, fd);
 		close(g_minishell.out);
 		close(fd_pipe[i - 1][0]);
 		return ;
@@ -69,7 +67,7 @@ void	ft_write_pipe(t_parse **parse, int **fd_pipe, int i, t_fd **fd, int flag)
 	{
 		dup2(fd_pipe[i][1], STDOUT_FILENO);
 		parse[i]->out_file = fd_pipe[i][1];
-		ft_execute_commands(parse[i], parse[i]->file, fd, flag);
+		ft_execute_commands(parse[i], parse[i]->file, fd);
 		close(fd_pipe[i][1]);
 	}
 	if (i > 0)
@@ -94,7 +92,7 @@ void	ft_connect_pipes(t_parse **parse, int **fd_pipe, int i)
 }
 
 // handle pipe
-void	ft_handle_pipe(t_parse **parse, t_fd **fd, int flag)
+void	ft_handle_pipe(t_parse **parse, t_fd **fd)
 {
 	int	i;
 	int	**fd_pipe;
@@ -103,7 +101,7 @@ void	ft_handle_pipe(t_parse **parse, t_fd **fd, int flag)
 	fd_pipe = ft_open_pipe();
 	while (parse[i])
 	{
-		ft_write_pipe(parse, fd_pipe, i, fd, flag);
+		ft_write_pipe(parse, fd_pipe, i, fd);
 		i++;
 		ft_connect_pipes(parse, fd_pipe, i);
 	}

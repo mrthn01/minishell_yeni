@@ -6,14 +6,14 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:06:14 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/25 19:43:47 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/25 13:22:36 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // check for node. if there is node go to next node. If there isn't a node but there is a command execute command
-void	ft_check_next_node(t_parse *parse, t_file **file, int flag)
+void	ft_check_next_node(t_parse *parse, t_file **file)
 {
 	if ((*file)->next != NULL) // if there is a next file
 	{
@@ -23,7 +23,7 @@ void	ft_check_next_node(t_parse *parse, t_file **file, int flag)
 	else if (parse->args[0]) // if it is an command
 	{
 		(*file) = (*file)->next;
-		ft_execve_or_builtin(parse->args, flag);
+		ft_execve_or_builtin(parse->args);
 	}
 }
 

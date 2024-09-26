@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 15:46:22 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/25 00:25:00 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/26 14:03:41 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,15 @@ t_minishell	*parse(int in_file, int out_file, t_minishell *mini)
 	}
 	mini->nodes_p = current;
 	mini = create_out_dup_list(mini);
+	printf("First command:\n");
+	printf("args[0]: %s\n", current->args[0]);  // ls
+	printf("args[1]: %s\n", current->args[1]);  // NULL
+
+	printf("Second command:\n");
+	current = current->next;
+	printf("args[0]: %s\n", current->args[0]);  // wc
+	printf("args[1]: %s\n", current->args[1]);  // -l
+	printf("args[2]: %s\n", current->args[2]);  // NULL
 	return (mini);
 }
 

@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:31:01 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/25 21:01:16 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/25 00:45:53 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_process_heredoc_data(char **envp, char *str, int pipe_fd, t_file **file)
 			free(str);
 			break ;
 		}
-		if (strcmp(str, (*file)->after) == 0)
+		if (ft_strncmp(str, (*file)->after, ft_strlen(str)) == 0)
 			break ;
 		str = ft_search_and_expand_env(envp, str);
 		if ((*file)->type != HERE_DOC || (*file)->after == NULL)
@@ -44,7 +44,7 @@ void	ft_process_heredoc_data(char **envp, char *str, int pipe_fd, t_file **file)
 }
 
 // manage parent process for heredoc. !!! pipe_fd[0] refers to reading side of path, pipe_fd[1] is the writing side of pipe
-void	ft_heredoc_parent_process(int pipe_fd[2], t_parse *parse, t_file **file, t_fd **fd, int flag)
+void	ft_heredoc_parent_process(int pipe_fd[2], t_parse *parse, t_file **file, t_fd **fd)
 {
 	close(pipe_fd[1]);
 	// ignore any signals
@@ -65,14 +65,14 @@ void	ft_heredoc_parent_process(int pipe_fd[2], t_parse *parse, t_file **file, t_
 	{
 		*file = (*file)->next;
 		if (parse->args[0] != NULL)
-			ft_execve_or_builtin(parse->args, flag);
+			ft_execve_or_builtin(parse->args);
 	}
 	// signal (SIGQUIT)
 	// signal (SIGINT)
 }
 
 // heredoc
-void	ft_heredoc(t_parse *parse, t_file **file, t_fd **fd, int flag)
+void	ft_heredoc(t_parse *parse, t_file **file, t_fd **fd)
 {
 	int		p_fd[2];
 	int		pid;
@@ -83,7 +83,6 @@ void	ft_heredoc(t_parse *parse, t_file **file, t_fd **fd, int flag)
 	envp = g_minishell.envp;
 	dup2((*fd)->in, STDIN_FILENO);
 	dup2((*fd)->out, STDOUT_FILENO);
-	pipe(p_fd);
 	pid = fork();
 	// signal(SIGINT, &ft_heredoc_signal);
 	if (pid == 0)
@@ -91,8 +90,8 @@ void	ft_heredoc(t_parse *parse, t_file **file, t_fd **fd, int flag)
 		close(p_fd[0]);
 		ft_process_heredoc_data(envp, str, p_fd[1], file);
 		close(p_fd[1]);
-		exit(0);
+		exit(1);
 	}
 	else
-		ft_heredoc_parent_process(p_fd, parse, file, fd, flag);
+		ft_heredoc_parent_process(p_fd, parse, file, fd);
 }

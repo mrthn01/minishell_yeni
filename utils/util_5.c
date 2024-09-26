@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:04:32 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/25 20:52:54 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/25 23:22:12 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,3 +108,4 @@ int	ft_token_counter(char **str)
 		g_minishell.token_num2 = a + 1;
 	return (g_minishell.token_num2);
 }
+

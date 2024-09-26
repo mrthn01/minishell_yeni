@@ -6,140 +6,78 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:20:49 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/25 20:53:22 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/25 23:34:17 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// return entered values as array list
-char	**ft_get_char(t_minishell *token)
-{
-	char	**argv;
-	t_list	*temp;
-	int		argc;
-	int		i;
-	
-	temp = token->nodes_t;
-	argc = 0;
-	i = 0;
-	while (temp)
-	{
-		argc++;
-		temp = temp->next;
-	}
-	temp = token->nodes_t;
-	argv = malloc((argc + 1) *  sizeof(char *));
-	if (!argv)
-		return (NULL);
-	while (i < argc && temp != NULL)
-	{
-		argv[i] = (char *)temp->content;
-		temp = temp->next;
-		i++;
-	}
-	argv[argc] = NULL;
-	return (argv);
-}
+extern t_minishell	g_minishell;
 
-char	*ft_find_command_path(char *command)
-{
-    char		*path;
-	char		*paths;
-	char		*dir;
-	static char	full_path[1024];
-    // getenv -> set, unset, and fetch environment variables from the host environment list
-    // return value of getenv: The getenv() function returns the value of the environment variable as a NUL-terminated
-    // string.  If the variable name is not in the current environment, NULL is returned.
-    path = getenv("PATH");
-	if (!path)
-		return (NULL);
-	paths = ft_strdup(path);
-	dir = strtok(paths, ":"); // ft_strtok hatalı
-	while (dir != NULL)
-	{
-		snprintf(full_path, sizeof(full_path), "%s/%s", dir, command);
-		if (access(full_path, X_OK) == 0)
-		{
-			free(paths);
-			return (full_path);
-		}
-		dir = strtok(NULL, ":");
-	}
-	free(paths);
-	return (NULL);
-}
-
-// void	ft_execute_execve(char *str)
+// // return entered values as array list
+// char	**ft_get_char(t_minishell *token)
 // {
 // 	char	**argv;
-// 	char	*command_path;
-// 	char	*str;
+// 	t_list	*temp;
 // 	int		argc;
 // 	int		i;
-// 	t_list	*temp;
 	
-// 	temp = mini->nodes_t;
-// 	str = (char *)temp->content;
-// 	if (mini == NULL || str == NULL)
-// 		return ;
-// 	command_path = ft_find_command_path(str);
-// 	if (command_path == NULL)
-// 	{
-// 		printf("%s: command not found\n", str);
-// 		return ;
-// 	}
+// 	temp = token->nodes_t;
 // 	argc = 0;
+// 	i = 0;
 // 	while (temp)
 // 	{
 // 		argc++;
 // 		temp = temp->next;
 // 	}
+// 	temp = token->nodes_t;
 // 	argv = malloc((argc + 1) *  sizeof(char *));
-// 	i = 0;
-// 	temp = mini->nodes_t;
+// 	if (!argv)
+// 		return (NULL);
 // 	while (i < argc && temp != NULL)
 // 	{
 // 		argv[i] = (char *)temp->content;
 // 		temp = temp->next;
 // 		i++;
 // 	}
-// 	argv[argc] = NULL; // last char shoudl be null
-// 	if (execve(command_path, argv, NULL) == -1)
-// 	{
-// 		perror("execve failed");
-// 		exit(EXIT_FAILURE);
-// 	}
-// 	free(argv);
+// 	argv[argc] = NULL;
+// 	return (argv);
 // }
 
-// void	ft_builtin_commands(t_minishell *mini)
+// char	*ft_find_command_path(char *command)
 // {
-// 	char	**input;
-
-// 	input = ft_get_char(mini);
-// 	if (ft_strncmp(input[0], "pwd", ft_strlen(str)) == 0)
-// 		ft_pwd(*input);
-// 	else if (ft_strncmp(input[0], "echo", ft_strlen(str)) == 0)
-// 		ft_echo(input);
-// 	else if (ft_strncmp(input[0], "cd", ft_strlen("cd")) == 0)
-// 		ft_cd(input);
-// 	else if (ft_strncmp(input[0], "env", ft_strlen("env")) == 0)
-// 		ft_env(input);
-// 	else if (ft_strncmp(input[0], "export", ft_strlen("export")) == 0)
-// 		ft_export(input);
-// 	else if (ft_strncmp(input[0], "unset", ft_strlen("unset")) == 0)
-// 		ft_unset(input);
-// 	else if (ft_strncmp(input[0], "exit", ft_strlen(str)) == 0)
-// 		ft_exit(input);
+//     char		*path;
+// 	char		*paths;
+// 	char		*dir;
+// 	static char	full_path[1024];
+//     // getenv -> set, unset, and fetch environment variables from the host environment list
+//     // return value of getenv: The getenv() function returns the value of the environment variable as a NUL-terminated
+//     // string.  If the variable name is not in the current environment, NULL is returned.
+//     path = getenv("PATH");
+// 	if (!path)
+// 		return (NULL);
+// 	paths = ft_strdup(path);
+// 	dir = strtok(paths, ":"); // ft_strtok hatalı
+// 	while (dir != NULL)
+// 	{
+// 		snprintf(full_path, sizeof(full_path), "%s/%s", dir, command);
+// 		if (access(full_path, X_OK) == 0)
+// 		{
+// 			free(paths);
+// 			return (full_path);
+// 		}
+// 		dir = strtok(NULL, ":");
+// 	}
+// 	free(paths);
+// 	return (NULL);
 // }
 
-void	ft_execute_commands(t_parse *parse, t_file *file, t_fd **fd, int flag)
+void	ft_execute_commands(t_parse *parse, t_file *file, t_fd **fd)
 {
 	if (file == NULL)
 	{
-		ft_execve_or_builtin(parse->args, flag);
-		if (flag == 0)
+		ft_execve_or_builtin(parse->args);
+		if (g_minishell.token_num2)
 			ft_return_fd();
 		else
 			dup2(parse->in_file, STDIN_FILENO);
@@ -154,20 +92,20 @@ void	ft_execute_commands(t_parse *parse, t_file *file, t_fd **fd, int flag)
 		else if (file->type == APPEND)
 			; // append
 		else if (file->type == HERE_DOC)
-			ft_heredoc(parse, &file, fd, flag);
+			ft_heredoc(parse, &file, fd);
 		if (file == NULL && parse->next == NULL)
 			ft_return_fd();
 	}
 }
 
-void	ft_execve_or_builtin(char **str, int flag)
+void	ft_execve_or_builtin(char **str)
 {
 	pid_t	pid;
 	int		type;
 
 	type = ft_builtin_or_not(str[0]);
-	printf("type: %d and flag: %d\n", type, flag);
-	if (type != 0)
+	printf("type: %d\n", type);
+	if (g_minishell.token_num2 == 1 && type != 0)
 	{
 		ft_execute_builtins(str);
 		return ;
@@ -182,25 +120,26 @@ void	ft_execve_or_builtin(char **str, int flag)
 			exit(0);
 		}
 		else
-			ft_execute_execve(str, flag);
+			ft_execute_execve(str);
 	}
 	return ;
 }
 
-void	ft_command(t_parse **parse, t_fd **fd)
+void	ft_command(t_parse *parse, t_fd **fd)
 {
 	int		type; // sinyal kısmıyla alakalı
-	int		flag;
 
-	type = ft_builtin_or_not(parse[0]->args[0]); // bu kısımda sinyallerle ilgili //
-	flag = 0;
-	if (parse[1] != NULL)
+	type = ft_builtin_or_not(parse->args[0]); // bu kısımda sinyallerle ilgili //
+	printf("%d \n", type);
+	g_minishell.pipe_flag = 1;
+	if (parse->next != NULL)
 	{
-		flag = 1;
-		ft_handle_pipe(parse, fd, flag);
+		printf("GİRDİ\n");
+		g_minishell.pipe_flag = 1;
+		ft_handle_pipe(&parse, fd);
 	}
 	else
-		ft_execute_commands(parse[0], parse[0]->file, fd, flag);
+		ft_execute_commands(parse, parse->file, fd);
 	// handle signals later //
 	while (waitpid(0, &g_minishell.exit_status, 0) > 0)
 		continue;
@@ -229,14 +168,14 @@ void	ft_dup_fd(t_parse *parse)
 
 void	ft_execution(t_minishell *mini)
 {
-	t_parse	**parse;
+	t_parse	*parse;
 	t_fd	*fd;
 	char	*str;
 
-	parse = &mini->nodes_p;
+	parse = mini->nodes_p;
 	str = (char *)mini->nodes_t->content;
 	if (mini->nodes_t == NULL || str == NULL)
 		return ;
-	ft_dup_fd(parse[0]);
+	ft_dup_fd(parse);
 	ft_command(parse, &fd);
 }

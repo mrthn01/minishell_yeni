@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 18:22:46 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/25 19:40:04 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/25 21:53:41 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,11 @@
 
 extern t_minishell	g_minishell;
 
-void	ft_execute(char *full_path, char **str, int flag)
+void	ft_execute(char *full_path, char **str)
 {
-	if (flag == 0)
-	{
-		execve(full_path, str, g_minishell.envp);
-		print_error(str[0], ": Permission denied\n", 126);
-		exit(126);
-	}
-	else
-	{
-		exit(1);
-	}
+	execve(full_path, str, g_minishell.envp);
+	print_error(str[0], ": Permission denied\n", 126);
+	exit(126);
 }
 
 // search command path
@@ -85,7 +78,7 @@ int	ft_check_if_path(char *str)
 }
 
 // execve handler
-void	ft_execute_execve(char **str, int flag)
+void	ft_execute_execve(char **str)
 {
 	char	*full_path;
 	char	*path;
@@ -106,10 +99,10 @@ void	ft_execute_execve(char **str, int flag)
 			exit(g_minishell.exit_status);
 		}
 		else
-			ft_execute(full_path, str, flag);
+			ft_execute(full_path, str);
 		free(full_path);
 	}
 	else
-		ft_execute(str[0], str, flag);
+		ft_execute(str[0], str);
 	free(path);
 }

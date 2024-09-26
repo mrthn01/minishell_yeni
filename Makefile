@@ -27,11 +27,10 @@ SRC = 	./parsing/tokenization.c \
 		./commands/ft_unset.c \
 		./execution/ft_execute.c \
 		./execution/ft_builtins.c \
-		./execution/ft_execution.c \
 		./execution/ft_heredoc.c \
 		./execution/ft_heredoc_utils.c \
-		./execution/ft_execve.c \
 		./execution/ft_pipe.c \
+		./execution/ft_execve.c \
 		./init.c \
 		./main.c
 #		./utils/util_4.c #

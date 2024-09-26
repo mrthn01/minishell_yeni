@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:07:13 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/25 20:49:00 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/25 23:32:55 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct	s_minishell
 	char		*str;
 	int			exit_status;
 	int			error;
+	int			pipe_flag;
 }				t_minishell;
 
 int				check_if_empty(char *str);
@@ -109,7 +110,6 @@ char			*ft_check_string(char *str, int *i);
 void			ft_search_envp_vars(char **str);
 
 // util
-void			ft_error();
 int				ft_lstprint_t(t_minishell *mini);
 int				ft_get_size_double_point(char **str);
 void			ft_split_free(char **str);
@@ -131,6 +131,7 @@ int				ft_get_term_signal(int status);
 char			**ft_split_adjusted(char *s, char c);
 int				check_for_q(t_minishell *mini);
 char			*ft_handle_q(char **s);
+int				ft_token_counter(char **str);
 
 //redirect in token
 int				ft_special_type_index(char c);
@@ -164,46 +165,48 @@ int				pipe_check(t_list *tmp_token, t_list *tmp_prev);
 // void		ft_execve_or_builtin(t_minishell *mini);
 // void		ft_check_which_command_execute(t_parse *parse, t_fd **fd);
 
+
 char			**ft_get_char(t_minishell *token);
 char			*ft_find_command_path(char *command);
 // void			ft_execute_execve(t_minishell *mini);
-void			ft_execute_commands(t_parse *parse, t_file *file, t_fd **fd, int flag);
-void			ft_execve_or_builtin(char **str, int flag);
+void			ft_execute_commands(t_parse *parse, t_file *file, t_fd **fd);
+void			ft_execve_or_builtin(char **str);
 void			ft_dup_fd(t_parse *parse);
-void			ft_command(t_parse **parse, t_fd **fd);
+void			ft_command(t_parse *parse, t_fd **fd);
 int				ft_builtin_or_not(char *str);
 void			ft_execute_builtins(char **commands);
 void			ft_execution(t_minishell *mini);
+void			ft_execve_or_builtin(char **str);
 
 //------heredoc------//
 void			ft_write_heredoc(char *str, int pipe_fd);
 void			ft_process_heredoc_data(char **envp, char *str, int pipe_fd, t_file **file);
-void	ft_heredoc_parent_process(int pipe_fd[2], t_parse *parse, t_file **file, t_fd **fd, int flag);
-void	ft_heredoc(t_parse *parse, t_file **file, t_fd **fd, int flag);
+void			ft_heredoc_parent_process(int pipe_fd[2], t_parse *parse, t_file **file, t_fd **fd);
+void			ft_heredoc(t_parse *parse, t_file **file, t_fd **fd);
 
 //------heredoc utils------//
 
-void			ft_check_next_node(t_parse *parse, t_file **file, int flag);
+void			ft_check_next_node(t_parse *parse, t_file **file);
 char			*ft_convert_char_to_string(char c);
 char			*ft_add_char_to_string(char *str, char c);
 char			*ft_search_and_expand_env(char **env, char *str);
-
-// ft_execve //
-void	ft_execute(char *full_path, char **str, int flag);
-char	*ft_search_path(char *str, char *path);
-char	*ft_my_get_env(char **envp, char *str);
-int		ft_check_if_path(char *str);
-void	ft_execute_execve(char **str, int flag);
-
 
 // pipe
 
 void			ft_return_fd(void);
 void			ft_free_open_pipes(int **fd_pipe);
 int				**ft_open_pipe(void);
-void			ft_write_pipe(t_parse **parse, int **fd_pipe, int i, t_fd **fd, int flag);
+void			ft_write_pipe(t_parse **parse, int **fd_pipe, int i, t_fd **fd);
 void			ft_connect_pipes(t_parse **parse, int **fd_pipe, int i);
-void			ft_handle_pipe(t_parse **parse, t_fd **fd, int flag);
+void			ft_handle_pipe(t_parse **parse, t_fd **fd);
+
+// execve //
+void	ft_execute(char *full_path, char **str);
+char	*ft_search_path(char *str, char *path);
+char	*ft_my_get_env(char **envp, char *str);
+int		ft_check_if_path(char *str);
+void	ft_execute_execve(char **str);
+
 
 //	commands
 

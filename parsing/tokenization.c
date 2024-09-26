@@ -50,6 +50,7 @@ int	parse_init(char *input)
 	input = ft_tab_to_space(input);
 	input = ft_strtrim(input, " ");
 	str = ft_split_adjusted(input, ' ');
+	g_minishell.token_num2 = ft_token_counter(str);
 	mini = ft_tokanazition(str, mini);
 	ft_split_free(str);
 	mini = ft_assign_special_type(mini);
