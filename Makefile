@@ -31,6 +31,7 @@ SRC = 	./parsing/tokenization.c \
 		./execution/ft_heredoc_utils.c \
 		./execution/ft_pipe.c \
 		./execution/ft_execve.c \
+		./execution/ft_redirection.c \
 		./init.c \
 		./main.c
 #		./utils/util_4.c #

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:04:32 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/25 23:22:12 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/26 18:37:59 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,16 @@ char *ft_handle_q(char **s)
 int	ft_token_counter(char **str)
 {
 	int	i;
-	int	a;
+	int	token_num;
 
-	i = 1;
-	a = 0;
+	i = 0;
+	token_num = 0;
 	while (str[i])
 	{
-		if (str[i][a] == '|')
-			a++;
+		if (strncmp(str[i], "|", ft_strlen(str[i])) == 0)
+			token_num++;
 		i++;
-	}
-	if (a == 0)
-	{
-		g_minishell.token_num2 = 1;
-		return (1);
-	}
-	else
-		g_minishell.token_num2 = a + 1;
-	return (g_minishell.token_num2);
+	}	
+	return (token_num + 1);
 }
 

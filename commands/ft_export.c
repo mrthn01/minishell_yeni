@@ -46,7 +46,7 @@ void	ft_display_env(void)
 	i = 0;
 	while (g_minishell.envp[i])
 	{
-		printf("describe -x %s\n", g_minishell.envp[i]);
+		printf("declare -x %s\n", g_minishell.envp[i]);
 		i++;
 	}
 }

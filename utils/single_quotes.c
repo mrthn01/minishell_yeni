@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:05:34 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/24 21:18:13 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:55:54 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	ft_single_quotes_finised(char *input, int index)
 	return (0);
 }
 
-int	ft_quotes_num(char *input)
+int	ft_quotes_num(char *input, char c)
 {
 	int	i;
 
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '\'' || input[i] == '\"')
+		if (input[i] == c)
 			return (i);
 		i++;
 	}
@@ -60,13 +60,13 @@ int	ft_quotes(char *input)
 	index = 0;
 	if (ft_is_quotes_there(input) == 1)
 	{
-		index = ft_quotes_num(input);
+		index = ft_quotes_num(input, '\'');
 		if (ft_single_quotes_finised(input, index) == 1)
 			return (1);
 	}
 	else if (ft_is_quotes_there(input) == 2)
 	{
-		index = ft_quotes_num(input);
+		index = ft_quotes_num(input, '\"');
 		if (ft_double_quotes_finised(input, index) == 1)
 			return (1);
 	}

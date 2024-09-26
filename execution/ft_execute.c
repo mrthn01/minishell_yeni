@@ -3,74 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:20:49 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/25 23:34:17 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/26 18:49:27 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_minishell	g_minishell;
-
-// // return entered values as array list
-// char	**ft_get_char(t_minishell *token)
-// {
-// 	char	**argv;
-// 	t_list	*temp;
-// 	int		argc;
-// 	int		i;
-	
-// 	temp = token->nodes_t;
-// 	argc = 0;
-// 	i = 0;
-// 	while (temp)
-// 	{
-// 		argc++;
-// 		temp = temp->next;
-// 	}
-// 	temp = token->nodes_t;
-// 	argv = malloc((argc + 1) *  sizeof(char *));
-// 	if (!argv)
-// 		return (NULL);
-// 	while (i < argc && temp != NULL)
-// 	{
-// 		argv[i] = (char *)temp->content;
-// 		temp = temp->next;
-// 		i++;
-// 	}
-// 	argv[argc] = NULL;
-// 	return (argv);
-// }
-
-// char	*ft_find_command_path(char *command)
-// {
-//     char		*path;
-// 	char		*paths;
-// 	char		*dir;
-// 	static char	full_path[1024];
-//     // getenv -> set, unset, and fetch environment variables from the host environment list
-//     // return value of getenv: The getenv() function returns the value of the environment variable as a NUL-terminated
-//     // string.  If the variable name is not in the current environment, NULL is returned.
-//     path = getenv("PATH");
-// 	if (!path)
-// 		return (NULL);
-// 	paths = ft_strdup(path);
-// 	dir = strtok(paths, ":"); // ft_strtok hatalı
-// 	while (dir != NULL)
-// 	{
-// 		snprintf(full_path, sizeof(full_path), "%s/%s", dir, command);
-// 		if (access(full_path, X_OK) == 0)
-// 		{
-// 			free(paths);
-// 			return (full_path);
-// 		}
-// 		dir = strtok(NULL, ":");
-// 	}
-// 	free(paths);
-// 	return (NULL);
-// }
 
 void	ft_execute_commands(t_parse *parse, t_file *file, t_fd **fd)
 {
@@ -86,13 +28,16 @@ void	ft_execute_commands(t_parse *parse, t_file *file, t_fd **fd)
 	while (file != NULL)
 	{
 		if (file->type == GREATER)
-			; // redirect in
+			ft_redirect_in(parse, &file);
 		else if (file->type == SMALLER)
-			; // redirect out
+			ft_redirect_out(parse, &file);
 		else if (file->type == APPEND)
-			; // append
+			ft_append(parse, &file);
 		else if (file->type == HERE_DOC)
-			ft_heredoc(parse, &file, fd);
+			{
+				printf("Geldi gene\n");
+				ft_heredoc(parse, &file, fd);
+			}
 		if (file == NULL && parse->next == NULL)
 			ft_return_fd();
 	}
@@ -104,7 +49,6 @@ void	ft_execve_or_builtin(char **str)
 	int		type;
 
 	type = ft_builtin_or_not(str[0]);
-	printf("type: %d\n", type);
 	if (g_minishell.token_num2 == 1 && type != 0)
 	{
 		ft_execute_builtins(str);
@@ -130,17 +74,14 @@ void	ft_command(t_parse *parse, t_fd **fd)
 	int		type; // sinyal kısmıyla alakalı
 
 	type = ft_builtin_or_not(parse->args[0]); // bu kısımda sinyallerle ilgili //
-	printf("%d \n", type);
-	g_minishell.pipe_flag = 1;
+	g_minishell.pipe_flag = 0;
 	if (parse->next != NULL)
 	{
-		printf("GİRDİ\n");
 		g_minishell.pipe_flag = 1;
-		ft_handle_pipe(&parse, fd);
+		ft_handle_pipe(parse, fd);
 	}
 	else
 		ft_execute_commands(parse, parse->file, fd);
-	// handle signals later //
 	while (waitpid(0, &g_minishell.exit_status, 0) > 0)
 		continue;
 	if (type == 0)
