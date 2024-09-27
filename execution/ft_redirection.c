@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:21:38 by melcuman          #+#    #+#             */
-/*   Updated: 2024/09/26 15:21:48 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:56:19 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_append(t_parse *parse, t_file **file)
 	if (fd_file == -1)
 	{
 		print_error((*file)->after, ": No such file or directory", 0);
-		return ;
 	}
 	if ((*file)->next == NULL || (*file)->next->type != APPEND)
 	{
@@ -38,6 +37,7 @@ void	ft_append(t_parse *parse, t_file **file)
 			ft_execve_or_builtin(parse->args);
 	}
 	close(fd_file);
+	g_minishell.flag2 = 0;
 	*file = (*file)->next;
 }
 
@@ -50,6 +50,7 @@ void	ft_redirect_out(t_parse *parse, t_file **file)
 	if (fd_file == -1)
 	{
 		print_error((*file)->after, ": No such file or directory", 0);
+		g_minishell.flag2 = 1;
 		*file = (*file)->next;
 		return ;
 	}
@@ -65,6 +66,7 @@ void	ft_redirect_out(t_parse *parse, t_file **file)
 			ft_execve_or_builtin(parse->args);
 	}
 	close(fd_file);
+	g_minishell.flag2 = 0;
 	*file = (*file)->next;
 }
 
@@ -89,5 +91,6 @@ void	ft_redirect_in(t_parse *parse, t_file **file)
 			ft_execve_or_builtin(parse->args);
 	}
 	close(fd_file);
+	g_minishell.flag2 = 0;
 	*file = (*file)->next;
 }

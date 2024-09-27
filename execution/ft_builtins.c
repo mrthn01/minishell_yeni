@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 15:19:50 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/23 14:30:50 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/27 01:34:43 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ft_builtin_or_not(char *str)
 		return (5);
 	if (ft_strncmp(str, "unset", ft_strlen("unset")) == 0)
 		return (6);
+	if (ft_strncmp(str, "exit", ft_strlen("exit")) == 0)
+		return (7);
 	return (0);
 }
 
@@ -39,7 +41,7 @@ void	ft_execute_builtins(char **commands)
 	if (type == 1)
 		ft_cd(commands);
 	else if (type == 2)
-		ft_pwd(*commands);
+		ft_pwd();
 	else if (type == 3)
 		ft_echo(commands);
 	else if (type == 4)
@@ -48,4 +50,6 @@ void	ft_execute_builtins(char **commands)
 		ft_export(commands);
 	else if (type == 6)
 		ft_unset(commands);
+	else if (type == 7)
+		ft_exit(commands);
 }

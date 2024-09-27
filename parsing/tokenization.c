@@ -44,6 +44,7 @@ int	parse_init(char *input)
 	char			**str;
 	t_minishell		*mini;
 
+	g_minishell.flag2 = 0;
 	mini = malloc(sizeof(t_minishell));
 	mini->nodes_t = malloc(sizeof(t_list));
 	mini->nodes_t->next = NULL;

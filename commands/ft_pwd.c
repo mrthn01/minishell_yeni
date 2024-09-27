@@ -6,28 +6,24 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:00:24 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/19 19:00:55 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/27 01:31:07 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // pwd command
-void	ft_pwd(char *str)
+void	ft_pwd(void)
 {
 	char	*pwd;
 	
-	if (ft_strncmp(str, "pwd", ft_strlen(str)) == 0)
-	{
-		pwd = getcwd(NULL, 0);
-		if (pwd != NULL)
-		{
-			printf("%s\n", pwd);
-			free(pwd);
-		}
-		else
-			perror("pwd error");
-	}
+	pwd = getcwd(0, 0);
+	if (!pwd)
+		print_error(NULL, "error: no such file or directory.\n", 127);
 	else
-		return ;
+	{
+		g_minishell.exit_status = 0;
+		printf("%s\n", pwd);
+	}
+	free(pwd);
 }

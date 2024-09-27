@@ -18,6 +18,7 @@ SRC = 	./parsing/tokenization.c \
 		./utils/double_quotes.c \
 		./utils/ft_minishell_init.c \
 		./utils/ft_exit_bits.c \
+		./utils/ft_signals.c \
 		./commands/ft_cd.c \
 		./commands/ft_echo.c \
 		./commands/ft_env.c \
@@ -33,8 +34,8 @@ SRC = 	./parsing/tokenization.c \
 		./execution/ft_execve.c \
 		./execution/ft_redirection.c \
 		./init.c \
-		./main.c
-#		./utils/util_4.c #
+		./main.c \
+		./utils/util_4.c
 
 OBJS = $(SRC:.c=.o)
 
@@ -55,6 +56,3 @@ fclean:
 re: fclean all
 
 .PHONY: all re clean fclean
-
-# valgrind: re
-# 	@valgrind -s --leak-check=full --show-leak-kinds=all --log-file=output.log ./minishell

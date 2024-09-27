@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:07:13 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/26 18:47:31 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:04:49 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct	s_minishell
 	int			exit_status;
 	int			error;
 	int			pipe_flag;
+	int			flag2;
+	char		*old_pwd;
 }				t_minishell;
 
 int				check_if_empty(char *str);
@@ -134,6 +136,15 @@ int				check_for_q(t_minishell *mini);
 char			*ft_handle_q(char **s);
 int				ft_token_counter(char **str);
 void 			print_char_array(char **array);
+char			*ft_custom_getenv(char *name);
+
+
+// signals
+void	ft_ignore_signals(void);
+void	ft_heredoc_signal_init(int sig);
+void	ft_ctrl_c(int signal);
+void	ft_ctrl_d(char *str);
+void	ft_sigint_handler(int signum);
 
 //redirect in token
 
@@ -226,7 +237,7 @@ int				ft_number_of_envp_var(void);
 void			ft_free_array(char **str);
 void			ft_add_new_env(char *str);
 void			ft_export(char **input);
-void			ft_pwd(char *str);
+void			ft_pwd(void);
 void			ft_remove_var(char *str);
 void			ft_unset(char **input);
 void			ft_print(char **str, int i, int flag);
