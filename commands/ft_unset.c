@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:58:28 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/21 15:48:45 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/27 19:43:19 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	ft_unset(char **input)
 		free(str);
 		input++;
 	}
+	ft_update_path_dir();
 }

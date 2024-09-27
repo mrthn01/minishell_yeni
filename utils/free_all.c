@@ -6,7 +6,7 @@
 /*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:00:52 by melcuman          #+#    #+#             */
-/*   Updated: 2024/09/27 16:51:55 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:44:14 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,16 @@ void	clean_the_mess(void)
 	int	i;
 
 	i = 0;
+	if (g_minishell.paths)
+	{
+		while (g_minishell.paths[i])
+		{
+			free(g_minishell.paths);
+			i++;
+		}
+		free(g_minishell.paths);
+	}
+	i = 0;
 	if (g_minishell.envp)
 	{
 		while (g_minishell.envp[i])
@@ -92,22 +102,14 @@ void	free_all(char *str)
 {
 	if (str)
 	{
-		printf("gecti 1\n");
 		free(str);
 	}
 	if (g_minishell.nodes_t)
 	{
-		printf("gecti 2\n");
 		free_token(g_minishell.nodes_t);
 	}
 	if (g_minishell.nodes_p)
 	{
-		printf("gecti 3\n");
 		free_parse(g_minishell.nodes_p);
 	}
-	/*if (g_minishell.fd)
-	{
-		printf("gecti 4\n");
-		free_fd(g_minishell.fd);
-	}*/
 }

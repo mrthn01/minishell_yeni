@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 22:20:12 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 11:06:21 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/27 19:44:41 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,18 @@ char	*ft_custom_getenv(char *name)
 	}
 	free(new_str);
 	return (ft_calloc(sizeof(char *), 1));
+}
+
+void	ft_update_path_dir(void)
+{
+	char	*path;
+	if (g_minishell.paths)
+		ft_free_array(g_minishell.paths);
+	path = getenv("PATH");
+	if (!(*path))
+	{
+		g_minishell.paths = 0;
+	}
+	else
+		g_minishell.paths = ft_split(path, ':');
 }

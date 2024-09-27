@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell_init.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:06:40 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/25 23:43:24 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/27 19:44:26 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_init(char **envp)
 {
 	g_minishell.envp = ft_store_envp(envp);
 	g_minishell.exit_status = 0;
+	g_minishell.paths = ft_split(getenv("PATH"), ':');
 	g_minishell.nodes_p = NULL; // parsing
 	g_minishell.error = 0;
 }

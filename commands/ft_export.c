@@ -6,7 +6,7 @@
 /*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 15:08:51 by melcuman          #+#    #+#             */
-/*   Updated: 2024/09/27 15:56:34 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:43:09 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,4 +197,5 @@ void	ft_export(char **input)
 				ft_add_new_env(*input);
 		}
 	}
+	ft_update_path_dir();
 }

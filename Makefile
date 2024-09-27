@@ -57,3 +57,6 @@ fclean:
 re: fclean all
 
 .PHONY: all re clean fclean
+
+# valgrind: re
+# 	@valgrind -s --leak-check=full --show-leak-kinds=all --log-file=output.log ./minishell

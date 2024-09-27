@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 18:22:46 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 17:07:14 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:11:27 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,47 @@ extern t_minishell	g_minishell;
 
 void	ft_execute(char *full_path, char **str)
 {
-	// if (g_minishell.flag2 == 0)
-	// {
-		printf("%s \n", full_path);
-		printf("%s \n" , str[0]);
+	printf("gecti \n");
+	if (g_minishell.flag2 == 0)
+	{
 		execve(full_path, str, g_minishell.envp);
 		// ft_clean_all() -> free
 		// ft_clean_mess() -> free
 		print_error(str[0], ": Permission denied\n", 126);
 		exit(126);
-	// }
-	// else
-	// {
-		// ft_clean_all() -> free
-		// ft_clean_mess() -> free
-	// 	exit(1);
-	// }
+	}
+	else
+	{
+	//	ft_clean_all() -> free
+	//	ft_clean_mess() -> free
+		exit(1);
+	}
+}
+
+char	*ft_str_join2(char *str)
+{
+	char	*str_new;
+	int		i;
+	int		len;
+	int		j;
+
+	len = 0;
+	i = 1;
+	while (str[i])
+	{
+		if (str[i] == '/')
+			break ;
+		i++;
+	}
+	j = i;
+	while (str[i++])
+		len++;
+	i = j;
+	j = 0;
+	str_new= malloc(sizeof(char) * (len + 1));
+	while (str[i])
+		str_new[j++] = str[i++];
+	return (str_new);
 }
 
 // search command path
@@ -41,13 +66,16 @@ char	*ft_search_path(char *str, char *path)
 	char	*command;
 	char	*tok;
 
-	command = ft_strjoin("/", str);
+	if (*str != '/')
+		command = ft_strjoin("/", str);
+	else
+		command = ft_str_join2(str);
 	tok = ft_strtok(path, ":");
 	while (tok != NULL)
 	{
 		full_path = ft_strjoin(tok, command);
 		if (access(full_path, F_OK) == 0)
-		{	
+		{
 			free(command);
 			return (full_path);
 		}
@@ -84,7 +112,9 @@ int	ft_check_if_path(char *str)
 	while (str[i])
 	{
 		if (str[i] == '/')
+		{
 			return (i);
+		}
 		i++;
 	}
 	return (0);
