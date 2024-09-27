@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:07:13 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/27 11:04:49 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/27 16:52:46 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,9 @@ void			ft_env(char	**input);
 void			ft_exit(char **str);
 int				ft_check_envp_var(char *str);
 int				ft_check_equal_sign(char *str);
-void			ft_display_env(void);
+void			ft_display_env(char *str);
+void			ft_print_envp();
+void			ft_print_single(char *str);
 int				ft_is_exist(char *str);
 int				ft_number_of_envp_var(void);
 void			ft_free_array(char **str);
@@ -242,6 +244,13 @@ void			ft_remove_var(char *str);
 void			ft_unset(char **input);
 void			ft_print(char **str, int i, int flag);
 
+//clean//
+void			free_token(t_list *token);
+void			free_file(t_file *file);
+void			free_parse(t_parse *parse);
+void			free_fd(t_fd *fd);
+void			free_all(char *str);
+void			clean_the_mess(void);
 extern t_minishell	g_minishell;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 00:32:55 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 00:52:45 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/27 16:35:35 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	ft_heredoc_signal_init(int sig)
 	(void)sig;
 	printf("\n");
 	g_minishell.exit_status = 130;
-	// ft_clean_all()->free
-	// ft_clean_mess()->free
+	// free_all(g_minishell.str);
 	exit(g_minishell.exit_status);
 }
 
@@ -44,9 +43,8 @@ void	ft_ctrl_d(char *str)
 {
 	if (!str)
 	{
-		printf("exit\n");
-		// ft_clean_all()->free
-		// ft_clean_mess()->free
+		printf("\nexit\n");
+		// free_all(g_minishell.str);
 		exit(g_minishell.exit_status);
 	}
 }

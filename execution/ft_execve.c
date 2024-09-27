@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 18:22:46 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 10:58:40 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/27 17:07:14 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@ extern t_minishell	g_minishell;
 
 void	ft_execute(char *full_path, char **str)
 {
-	if (g_minishell.flag2 == 0)
-	{
+	// if (g_minishell.flag2 == 0)
+	// {
+		printf("%s \n", full_path);
+		printf("%s \n" , str[0]);
 		execve(full_path, str, g_minishell.envp);
 		// ft_clean_all() -> free
 		// ft_clean_mess() -> free
 		print_error(str[0], ": Permission denied\n", 126);
 		exit(126);
-	}
-	else
-	{
+	// }
+	// else
+	// {
 		// ft_clean_all() -> free
 		// ft_clean_mess() -> free
-		exit(1);
-	}
+	// 	exit(1);
+	// }
 }
 
 // search command path

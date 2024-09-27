@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/27 15:08:51 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/27 15:56:34 by melcuman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 extern t_minishell	g_minishell;
@@ -33,22 +45,63 @@ int	ft_check_equal_sign(char *str)
 		}
 		i++;
 	}
-	if (ft_updated_strchr(&str[i], '=') == 1)
+	if (str[i] != '=')
+		return (1);
+	else if (ft_updated_strchr(&str[i], '=') == 1)
 		return (1);
 	return (0);
 }
 
-// print env var
-void	ft_display_env(void)
+void	ft_print_single(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (g_minishell.envp[i])
+	printf("declare -x ");
+	while (str[i] != '\0')
 	{
-		printf("declare -x %s\n", g_minishell.envp[i]);
+		printf("%c", str[i]);
 		i++;
 	}
+	printf("\n");
+}
+
+void	ft_print_envp()
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while (g_minishell.envp[i])
+	{
+		len = ft_strlen(g_minishell.envp[i]);
+		if (len == 1)
+			ft_print_single(g_minishell.envp[i]);
+		else
+			ft_display_env(g_minishell.envp[i]);
+		i++;
+	}
+}
+
+// print env var
+void	ft_display_env(char *str)
+{
+	int	i;
+
+	i = 0;
+	printf("describe -x ");
+	while (str[i] != '=')
+	{
+		printf("%c", str[i]);
+		i++;
+	}
+	printf("\"");
+	while (str[i] != '\0')
+	{
+		printf("%c", str[i]);
+		i++;
+	}
+	printf("\"\n");
 }
 
 // check env var in env var array. If it is exist return it is index, else return -1
@@ -125,7 +178,7 @@ void	ft_export(char **input)
 
 	if (input[1] == NULL)
 	{
-		ft_display_env();
+		ft_print_envp();
 		return ;
 	}
 	while (*++input)
