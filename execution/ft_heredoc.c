@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:31:01 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 16:53:05 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/28 13:45:17 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_heredoc(t_parse *parse, t_file **file, t_fd **fd)
 		close(p_fd[1]);
 		free_all(g_minishell.str);
 		clean_the_mess();
-		exit(0);
+		exit(g_minishell.exit_status);
 	}
 	else
 		ft_heredoc_parent_process(p_fd, parse, file, fd);

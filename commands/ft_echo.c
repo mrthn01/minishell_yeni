@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:55:33 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/21 14:28:32 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/27 22:54:09 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

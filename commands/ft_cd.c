@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:01:06 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 11:11:10 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/27 22:08:54 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_cd(char **str)
 		}
 		else if (chdir(str[1]))
 		{
-			print_error(NULL, "erro: failed to change directory.\n", 1);
+			print_error(NULL, "error: failed to change directory.\n", 1);
 			return ;
 		}
 		g_minishell.exit_status = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand_envp.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:07:24 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/23 15:18:42 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:57:56 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,6 @@ void	ft_search_envp_vars(char **str)
 		i++;
 		if (ft_strncmp(str[i - 1], ">>", ft_strlen(">>")) == 0 && str[i] != NULL)
 			i++;
+		g_minishell.input = str;
 	}
 }

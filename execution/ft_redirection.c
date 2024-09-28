@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:21:38 by melcuman          #+#    #+#             */
-/*   Updated: 2024/09/27 10:56:19 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/28 13:01:30 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_redirect_in(t_parse *parse, t_file **file)
 
 	fd_file = open((*file)->after, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_file == -1)
-		print_error((*file)->after, ": No such file or directory", 0);
+		print_error((*file)->after, "error: error openning file\n", 1);
 	if ((*file)->next == NULL || (*file)->next->type != GREATER)
 	{
 		dup2(fd_file, STDOUT_FILENO);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 12:27:07 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/27 19:46:31 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/28 15:46:09 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	ft_init(envp);
+	signal(SIGQUIT, SIG_IGN);
 	while (1) 
 	{
 		input = readline("minishell$ ");

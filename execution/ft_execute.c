@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:20:49 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 18:29:40 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/09/27 22:08:14 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_execute_commands(t_parse *parse, t_file *file, t_fd **fd)
 		else if (file->type == APPEND)
 			ft_append(parse, &file);
 		else if (file->type == HERE_DOC)
-				ft_heredoc(parse, &file, fd);
+			ft_heredoc(parse, &file, fd);
 		if (file == NULL && parse->next == NULL)
 			ft_return_fd();
 	}
@@ -58,14 +58,11 @@ void	ft_execve_or_builtin(char **str)
 		if (type != 0)
 		{
 			ft_execute_builtins(str);
-			exit(0);
+			exit(g_minishell.exit_status);
 		}
-		else 
-		{
+		else
 			ft_execute_execve(str);
-		}
 	}
-	return ;
 }
 
 void	ft_command(t_parse *parse, t_fd **fd)

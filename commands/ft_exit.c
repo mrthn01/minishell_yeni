@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:57:32 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 01:35:05 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/28 13:11:47 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	ft_exit_shell(int number_of_pipe)
 	if (number_of_pipe == 1)
 	{
 		printf("exit\n");
-		// ft_clean_all(); //->free
-		// ft_clean_mess(); // ->free
+		free_all(g_minishell.str);
+		clean_the_mess();
 		exit(g_minishell.exit_status);
 	}
 }
@@ -42,8 +42,8 @@ void	ft_check_exit_args(char **str, int number_of_pipes)
 		print_error(NULL, "exit\nexit: too many arguments\n", 1);
 		if (number_of_pipes == 1)
 		{
-			// ft_clean_all() -> free
-			// ft_clean_mess() -> free
+			free_all(g_minishell.str);
+			clean_the_mess();
 			exit(1);
 		}
 	}
@@ -52,8 +52,8 @@ void	ft_check_exit_args(char **str, int number_of_pipes)
 		g_minishell.exit_status = ft_atoi(str[1]) % 256;
 		if (number_of_pipes == 1)
 		{
-			// ft_clean_all() -> free
-			// ft_clean_mess() -> free
+			free_all(g_minishell.str);
+			clean_the_mess();
 			exit(g_minishell.exit_status);
 		}
 	}
@@ -92,8 +92,8 @@ void	ft_exit(char **str)
 			print_error(NULL, "exit\nexit: numeric argument required\n", 2);
 			if (number_of_pipes == 1)
 			{
-				// ft_clean_all() -> free
-				// ft_clean_mess() -> free
+				free_all(g_minishell.str);
+				clean_the_mess();
 				exit(2);
 			}
 		}

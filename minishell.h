@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:07:13 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/27 19:45:39 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:56:59 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_minishell
 	int			flag2;
 	char		*old_pwd;
 	char		**paths;
+	char		**input;
 }				t_minishell;
 
 int				check_if_empty(char *str);

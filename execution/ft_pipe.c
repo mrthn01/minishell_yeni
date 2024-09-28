@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:35:38 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/26 18:41:28 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/28 12:59:54 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ int	**ft_open_pipe()
 	int	i;
 	int	j;
 
-	i = (g_minishell.token_num2); // öylesine
-	printf("pipe sayısy: %d \n", i);
+	i = (g_minishell.token_num2);
 	pipe_fd = ft_calloc(i + 1, sizeof(int *));
 	j = 0;
 	while (j < i)
