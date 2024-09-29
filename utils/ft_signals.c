@@ -6,13 +6,12 @@
 /*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 15:48:04 by melcuman          #+#    #+#             */
-/*   Updated: 2024/09/29 15:48:06 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:12:35 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// signal handler for parent process
 extern t_minishell	g_minishell;
 
 void	ft_ignore_signals(void)
@@ -30,7 +29,6 @@ void	ft_heredoc_signal_init(int sig)
 	exit(g_minishell.exit_status);
 }
 
-// handle ctrl c
 void	ft_ctrl_c(int signal)
 {
 	// rl_replace_line("", 0);

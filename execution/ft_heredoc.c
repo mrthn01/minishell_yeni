@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 22:31:01 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/28 13:45:17 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/29 17:55:25 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// write given string into pipe
 void	ft_write_heredoc(char *str, int pipe_fd)
 {
 	int	len;
@@ -22,8 +21,8 @@ void	ft_write_heredoc(char *str, int pipe_fd)
 	write(pipe_fd, "\n", 1);
 }
 
-// get heredoc data and process it
-void	ft_process_heredoc_data(char **envp, char *str, int pipe_fd, t_file **file)
+void	ft_process_heredoc_data(char **envp, char *str, int pipe_fd,
+	t_file **file)
 {
 	while (1)
 	{
@@ -45,8 +44,8 @@ void	ft_process_heredoc_data(char **envp, char *str, int pipe_fd, t_file **file)
 	}
 }
 
-// manage parent process for heredoc. !!! pipe_fd[0] refers to reading side of path, pipe_fd[1] is the writing side of pipe
-void	ft_heredoc_parent_process(int pipe_fd[2], t_parse *parse, t_file **file, t_fd **fd)
+void	ft_heredoc_parent_process(int pipe_fd[2], t_parse *parse,
+	t_file **file, t_fd **fd)
 {
 	close(pipe_fd[1]);
 	ft_ignore_signals();
@@ -75,7 +74,6 @@ void	ft_heredoc_parent_process(int pipe_fd[2], t_parse *parse, t_file **file, t_
 	signal(SIGINT, &ft_ctrl_c);
 }
 
-// heredoc
 void	ft_heredoc(t_parse *parse, t_file **file, t_fd **fd)
 {
 	int		p_fd[2];

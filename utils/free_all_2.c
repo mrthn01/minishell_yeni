@@ -6,11 +6,37 @@
 /*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 15:50:32 by melcuman          #+#    #+#             */
-/*   Updated: 2024/09/29 15:50:57 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:06:10 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_free_open_pipes(int **fd_pipe)
+{
+	int	i;
+
+	i = 0;
+	while (fd_pipe[i])
+	{
+		free(fd_pipe[i]);
+		i++;
+	}
+	free(fd_pipe);
+}
+
+void	ft_free_array(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
 
 void	clean_the_mess(void)
 {

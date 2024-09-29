@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 22:57:32 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/28 13:11:47 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/09/29 18:04:11 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/29 18:04:37 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	ft_exit_shell(int number_of_pipe)
 	}
 }
 
-// count the number of args
 static int	ft_number_of_args(char **str)
 {
 	int	i;
@@ -34,7 +33,6 @@ static int	ft_number_of_args(char **str)
 	return (i);
 }
 
-// check if exit has arguments and handle them
 void	ft_check_exit_args(char **str, int number_of_pipes)
 {
 	if (ft_number_of_args(str) > 2)
@@ -59,7 +57,6 @@ void	ft_check_exit_args(char **str, int number_of_pipes)
 	}
 }
 
-// check if argumen has option
 int	ft_number_option(char *str)
 {
 	int	i;
@@ -75,7 +72,6 @@ int	ft_number_option(char *str)
 	return (1);
 }
 
-// exit command
 void	ft_exit(char **str)
 {
 	int		number_of_pipes;

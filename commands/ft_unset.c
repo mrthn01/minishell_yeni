@@ -5,14 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 22:58:28 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 19:43:19 by melcuman         ###   ########.fr       */
+/*   Created: 2024/09/29 18:09:21 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/29 18:09:25 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// unset (removing environment elements)
 void	ft_remove_var(char *str)
 {
 	char	**updated_env;

@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 19:01:06 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 22:08:54 by sebasari         ###   ########.fr       */
+/*   Created: 2024/09/29 18:01:34 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/29 18:01:48 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// get current pwd (old pwd)
 void	ft_get_current_pwd(void)
 {
 	g_minishell.old_pwd = getcwd(NULL, 0);
 }
 
-// update pwd
 void	ft_update_pwd(void)
 {
 	char	*pwd;
@@ -46,7 +44,6 @@ void	ft_update_pwd(void)
 	free(pwd);
 }
 
-// home
 void	ft_go_home(void)
 {
 	char	*temp;
@@ -61,7 +58,6 @@ void	ft_go_home(void)
 	ft_update_pwd();
 }
 
-// cd command
 void	ft_cd(char **str)
 {
 	if (str[1])

@@ -6,7 +6,7 @@
 /*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:04:32 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/29 16:10:51 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:51:41 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,30 @@ int	ft_token_counter(char **str)
 		i++;
 	}
 	return (token_num + 1);
+}
+
+char	*ft_str_join2(char *str)
+{
+	char	*str_new;
+	int		i;
+	int		len;
+	int		j;
+
+	len = 0;
+	i = 1;
+	while (str[i])
+	{
+		if (str[i] == '/')
+			break ;
+		i++;
+	}
+	j = i;
+	while (str[i++])
+		len++;
+	i = j;
+	j = 0;
+	str_new = malloc(sizeof(char) * (len + 1));
+	while (str[i])
+		str_new[j++] = str[i++];
+	return (str_new);
 }

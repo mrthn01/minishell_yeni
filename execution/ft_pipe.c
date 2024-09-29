@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 13:35:38 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/28 12:59:54 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/09/29 17:57:57 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/29 18:00:14 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,7 @@ void	ft_return_fd(void)
 	close(g_minishell.in2);
 }
 
-// free open pipes
-void	ft_free_open_pipes(int **fd_pipe)
-{
-	int	i;
-
-	i = 0;
-	while (fd_pipe[i])
-	{
-		free(fd_pipe[i]);
-		i++;
-	}
-	free(fd_pipe);
-}
-
-int	**ft_open_pipe()
+int	**ft_open_pipe(void)
 {
 	int	**pipe_fd;
 	int	i;
@@ -74,7 +60,6 @@ void	ft_write_pipe(t_parse *parse, int **fd_pipe, int i, t_fd **fd)
 		close(fd_pipe[i - 1][0]);
 }
 
-// connect pipes
 void	ft_connect_pipes(t_parse *parse, int **fd_pipe, int i)
 {
 	(void)parse;
@@ -91,7 +76,6 @@ void	ft_connect_pipes(t_parse *parse, int **fd_pipe, int i)
 	}
 }
 
-// handle pipe
 void	ft_handle_pipe(t_parse *parse, t_fd **fd)
 {
 	int	i;

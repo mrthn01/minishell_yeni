@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 22:56:38 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/21 15:41:56 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/09/29 18:02:10 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/29 18:02:11 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

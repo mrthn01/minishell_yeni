@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 15:21:38 by melcuman          #+#    #+#             */
-/*   Updated: 2024/09/28 13:01:30 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/09/29 17:58:05 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/29 18:00:32 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 extern t_minishell	g_minishell;
 
-// >> append
 void	ft_append(t_parse *parse, t_file **file)
 {
 	int	fd_file;
@@ -41,7 +40,6 @@ void	ft_append(t_parse *parse, t_file **file)
 	*file = (*file)->next;
 }
 
-// < redirect out
 void	ft_redirect_out(t_parse *parse, t_file **file)
 {
 	int	fd_file;
@@ -70,7 +68,6 @@ void	ft_redirect_out(t_parse *parse, t_file **file)
 	*file = (*file)->next;
 }
 
-// > redirect in
 void	ft_redirect_in(t_parse *parse, t_file **file)
 {
 	int	fd_file;

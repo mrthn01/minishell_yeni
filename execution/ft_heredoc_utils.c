@@ -3,44 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 22:06:14 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/25 13:22:36 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/09/29 17:57:07 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/29 17:57:08 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// check for node. if there is node go to next node. If there isn't a node but there is a command execute command
 void	ft_check_next_node(t_parse *parse, t_file **file)
 {
-	if ((*file)->next != NULL) // if there is a next file
+	if ((*file)->next != NULL)
 	{
-		*file = (*file)->next; // go to next file
+		*file = (*file)->next;
 		return ;
 	}
-	else if (parse->args[0]) // if it is an command
+	else if (parse->args[0])
 	{
 		(*file) = (*file)->next;
 		ft_execve_or_builtin(parse->args);
 	}
 }
 
-// conver char to string
 char	*ft_convert_char_to_string(char c)
 {
 	char	*str;
 
-	str = malloc(sizeof(char) *  2);
+	str = malloc(sizeof(char) * 2);
 	if (!str)
 		return (NULL);
 	str[0] = c;
 	str[1] = '\0';
-	return  (str);
+	return (str);
 }
 
-// Add new character to already exist string
 char	*ft_add_char_to_string(char *str, char c)
 {
 	char	*new_str;
@@ -54,13 +51,12 @@ char	*ft_add_char_to_string(char *str, char c)
 	return (str);
 }
 
-// extends environment variable inside of heredoc
 char	*ft_search_and_expand_env(char **env, char *str)
 {
 	char	*temp;
 	char	*var;
 	int		i;
-	
+
 	temp = ft_calloc(1, sizeof(char));
 	i = 0;
 	while (str[i])
@@ -75,7 +71,7 @@ char	*ft_search_and_expand_env(char **env, char *str)
 		if (str[i] == '\0')
 			break ;
 		if (str[i] == '$')
-			continue;
+			continue ;
 		temp = ft_add_char_to_string(temp, str[i]);
 		i++;
 	}

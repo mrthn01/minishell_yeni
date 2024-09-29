@@ -15,7 +15,9 @@ SRC = 	./parsing/tokenization.c \
 		./utils/util_1.c \
 		./utils/util_2.c \
 		./utils/util_3.c \
+		./utils/util_4.c \
 		./utils/util_5.c \
+		./utils/util_6.c \
 		./utils/double_quotes.c \
 		./utils/ft_minishell_init.c \
 		./utils/ft_exit_bits.c \
@@ -37,8 +39,7 @@ SRC = 	./parsing/tokenization.c \
 		./execution/ft_execve.c \
 		./execution/ft_redirection.c \
 		./init.c \
-		./main.c \
-		./utils/util_4.c
+		./main.c
 
 OBJS = $(SRC:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/21 15:19:50 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/27 01:34:43 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/09/29 17:57:14 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/29 17:57:16 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
