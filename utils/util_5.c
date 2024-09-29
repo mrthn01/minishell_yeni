@@ -6,7 +6,7 @@
 /*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:04:32 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/26 18:37:59 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/29 16:10:51 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ char	**ft_split_adjusted(char *s, char c)
 		return (0);
 	i = 0;
 	ret = malloc(sizeof(char *) * (ft_word_count(s, c) + 1));
-	if (!ret)
-		return (0);
 	while (*s)
 	{
 		if (ft_is_quotes_there_index(*s))
@@ -60,9 +58,8 @@ char	**ft_split_adjusted(char *s, char c)
 			continue ;
 		}
 		len = 0;
-		while (s[len] && s[len] != c) 
+		while (s[len] && s[len] != c)
 			len++;
-
 		if (len != 0)
 			ret[i++] = ft_substr(s, 0, len);
 		s += len;
@@ -71,7 +68,7 @@ char	**ft_split_adjusted(char *s, char c)
 	return (ret);
 }
 
-char *ft_handle_q(char **s)
+char	*ft_handle_q(char **s)
 {
 	int		size;
 	char	*str;
@@ -98,7 +95,6 @@ int	ft_token_counter(char **str)
 		if (strncmp(str[i], "|", ft_strlen(str[i])) == 0)
 			token_num++;
 		i++;
-	}	
+	}
 	return (token_num + 1);
 }
-

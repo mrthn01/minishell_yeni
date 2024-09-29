@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:05:34 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/26 14:55:54 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/09/29 15:53:20 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_quotes_num(char *input, char c)
 	return (0);
 }
 
-int ft_is_quotes_there(char *input)
+int	ft_is_quotes_there(char *input)
 {
 	int	i;
 
@@ -55,7 +55,7 @@ int ft_is_quotes_there(char *input)
 
 int	ft_quotes(char *input)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	if (ft_is_quotes_there(input) == 1)

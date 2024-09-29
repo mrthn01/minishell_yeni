@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 12:27:07 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/28 15:46:09 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:46:56 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_if_empty(char *str)
 	return (1);
 }
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	char	*input;
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv, char **envp)
 	(void)argv;
 	ft_init(envp);
 	signal(SIGQUIT, SIG_IGN);
-	while (1) 
+	while (1)
 	{
 		input = readline("minishell$ ");
 		g_minishell.str = input;
@@ -47,5 +47,5 @@ int main(int argc, char **argv, char **envp)
 		adjsut_all(input);
 		free_all(input);
 	}
-	return 0;
+	return (0);
 }

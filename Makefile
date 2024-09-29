@@ -10,6 +10,7 @@ SRC = 	./parsing/tokenization.c \
 		./parsing/parse.c \
 		./parsing/syntax_controll.c \
 		./parsing/ft_expand_envp.c \
+		./parsing/parse_2.c \
 		./utils/single_quotes.c \
 		./utils/util_1.c \
 		./utils/util_2.c \
@@ -20,6 +21,7 @@ SRC = 	./parsing/tokenization.c \
 		./utils/ft_exit_bits.c \
 		./utils/ft_signals.c \
 		./utils/free_all.c \
+		./utils/free_all_2.c \
 		./commands/ft_cd.c \
 		./commands/ft_echo.c \
 		./commands/ft_env.c \

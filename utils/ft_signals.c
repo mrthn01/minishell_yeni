@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/27 00:32:55 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/09/28 13:08:24 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/09/29 15:48:04 by melcuman          #+#    #+#             */
+/*   Updated: 2024/09/29 15:48:06 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

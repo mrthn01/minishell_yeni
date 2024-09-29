@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 15:08:51 by melcuman          #+#    #+#             */
-/*   Updated: 2024/09/27 19:43:09 by melcuman         ###   ########.fr       */
+/*   Updated: 2024/09/29 11:44:04 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_check_envp_var(char *str)
 {
 	if (ft_isdigit(*str))
 	{
-		printf("error: export bad syntax\n");
+		print_error(NULL, "error: not a valid identifier", 1);
 		return (0);
 	}
 	return (1);
@@ -33,14 +33,14 @@ int	ft_check_equal_sign(char *str)
 	i = 0;
 	if (str[0] == '=' || ft_isdigit(str[0]))
 	{
-		printf("error: export bad syntax\n");
+		print_error(NULL, "error: not a valid identifier", 1);
 		return (0);
 	}
 	while (str[i] && str[i] != '=')
 	{
 		if (ft_isalnum(str[i]) == 0)
 		{
-			printf("error: export bad syntax\n");
+			print_error(NULL, "error: not a valid identifier", 1);
 			return (0);
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:44:46 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/24 21:19:26 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/09/29 16:40:05 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_list	*ft_getridof_q(t_list *nodes_t)
 	i = 0;
 	while (str[i])
 	{
-		if (ft_is_quotes_there_index(str[i]))
+		if (i == 0 || i == len - 1)
 			i++;
 		else
 			new_str[j++] = str[i++];
@@ -55,13 +55,15 @@ int	ft_find_next_q(int start, char *input)
 	if (input[start] == '\'')
 	{
 		next_q++;
-		while (input[next_q] != '\'' && input[next_q] != '\n' && input[next_q] != '\0')
+		while (input[next_q] != '\'' && input[next_q] != '\n'
+			&& input[next_q] != '\0')
 			next_q++;
 	}
 	else if (input[start] == '\"')
 	{
 		next_q++;
-		while (input[next_q] != '\"' && input[next_q] != '\n' && input[next_q] != '\0')
+		while (input[next_q] != '\"' && input[next_q] != '\n'
+			&& input[next_q] != '\0')
 			next_q++;
 	}
 	return (next_q);
@@ -80,9 +82,9 @@ t_list	*ft_basic_q(t_list *nodes_t, int len)
 	new_str = malloc(sizeof(char) * (len - 1));
 	while (str[i])
 	{
-		if (ft_is_quotes_there_index(str[i]))
+		if (i == 0 || i == len)
 			i++;
-		else 
+		else
 			new_str[j++] = str[i++];
 	}
 	new_str[j] = '\0';
@@ -113,12 +115,11 @@ t_list	*add_q_to_nodes(int *index, char *input, t_list *mini_list)
 
 int	ft_is_quotes_there_index(char c)
 {
-	
 	if (c == '\0')
 		return (0);
 	if (c == '\'')
 		return (1);
 	else if (c == '\"')
-		return (1);
+		return (2);
 	return (0);
 }

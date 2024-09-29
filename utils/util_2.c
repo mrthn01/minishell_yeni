@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: melcuman <melcuman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 19:13:07 by sebasari          #+#    #+#             */
-/*   Updated: 2024/09/24 20:58:38 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/09/29 16:02:58 by melcuman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,25 @@ int	ft_strlen_adjusted(char **str)
 	return (i);
 }
 
-void del(void *content)
+void	del(void *content)
 {
 	free(content);
 }
 
-char *ft_strtok(char *str, char *delim)
+char	*ft_strtok(char *str, char *delim)
 {
-	static char *next;
+	static char	*next;
+	char		*mini_start;
+
 	if (str != NULL)
 		next = str;
 	if (next == NULL)
-		return NULL;
+		return (NULL);
 	while (*next && ft_strchr(delim, *next))
 		next++;
 	if (*next == '\0')
-		return NULL;
-	char *mini_start = next;
+		return (NULL);
+	mini_start = next;
 	while (*next && !ft_strchr(delim, *next))
 		next++;
 	if (*next)
@@ -46,7 +48,7 @@ char *ft_strtok(char *str, char *delim)
 		*next = '\0';
 		next++;
 	}
-	return mini_start;
+	return (mini_start);
 }
 
 char	*ft_tab_to_space(char *input)
@@ -63,15 +65,14 @@ char	*ft_tab_to_space(char *input)
 	return (input);
 }
 
-t_minishell *ft_deleteFirstNode(t_minishell *mini)
+t_minishell	*ft_delete_first_node(t_minishell *mini)
 {
-
 	t_list	*temp;
+
 	temp = mini->nodes_t;
 	if (!temp)
-		return NULL;
+		return (NULL);
 	mini->nodes_t = mini->nodes_t->next;
-
 	free(temp);
 	return (mini);
 }
